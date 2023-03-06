@@ -1,0 +1,28 @@
+#include "../../Source/GeneticAlgorithm/GeneticGenerator.h"
+#include "../../Source/GeneticAlgorithm/Trainer.h"
+
+
+class testGen : public GeneticGenerator {
+    virtual float calcFit(Organism &organism){
+        float fit = 0;
+        for (int i=0; i < organism.genomeLength(); i++) {
+            fit += organism.getGene(i);
+        }
+        return fit;
+    }
+};
+
+TEST_CASE("GeneticAlgorithm : Trainer algorithm test"){
+
+    GeneticGenerator* testgen = new testGen();
+
+    Trainer trainer = Trainer(100,5,20,3,5,15, testgen);
+    trainer.initPopulation();
+
+    Organism best = trainer.train(1000,false);
+
+    REQUIRE(best.getFit() == doctest::Approx(14.99).epsilon(0.01));
+
+    delete testgen;
+
+}

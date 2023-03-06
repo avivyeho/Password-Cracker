@@ -1,0 +1,13 @@
+PCFG 
+ variable characters: 
+ A B S
+ terminal characters: 
+ a b c
+ start symbol: 
+ S
+ production rules: 
+ A -->  a   1.000000
+ B -->  b   0.100000
+ B -->  c A   0.900000
+ S -->  A B   0.700000
+ S -->  B B   0.300000

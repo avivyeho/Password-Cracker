@@ -1,0 +1,1 @@
+{"Productions":[{"body":["a","A"],"head":"A","prob":0.5},{"body":["0"],"head":"A","prob":0.5},{"body":["b","B"],"head":"B","prob":0.5},{"body":["1"],"head":"B","prob":0.5},{"body":["A","B"],"head":"S","prob":0.1},{"body":["B","A","B"],"head":"S","prob":0.9}],"Start":"S","Terminals":["0","1","a","b"],"Variables":["A","B","S"]}

@@ -1,0 +1,76 @@
+#include "../../Source/GeneticAlgorithm/Organism.h"
+
+
+TEST_CASE("GeneticAlgorithm : Organism empty organism"){
+    Organism test = Organism();
+
+    CHECK_THROWS(test.genomeLength());
+    CHECK_THROWS(test.mutate(5));
+    CHECK_THROWS(test.crossover(test));
+
+}
+
+TEST_CASE("GeneticAlgorithm : Organism child constructor") {
+    vector<float> empty_vec = vector<float>();
+    Organism test_child;
+
+    REQUIRE_THROWS(test_child = Organism(empty_vec));
+}
+
+TEST_CASE("GeneticAlgorithm : Organism random constructor") {
+    Organism test;
+
+    REQUIRE_THROWS(test = Organism(-1));
+    REQUIRE_THROWS(test = Organism(0));
+
+    REQUIRE_NOTHROW(test = Organism(1));
+
+    REQUIRE_EQ(test.genomeLength(), 1);
+    REQUIRE_EQ(test.getFit(), 0);
+}
+
+TEST_CASE("GeneticAlgorithm : Organism mutation") {
+    Organism test = Organism(1);
+
+    REQUIRE_THROWS(test.mutate(-1));
+    REQUIRE_THROWS(test.mutate(101));
+
+    SUBCASE("no mutation"){
+        float old_gene = test.getGene(0);
+        test.mutate(0);
+        CHECK_EQ(test.getGene(0), old_gene);
+    }
+
+    SUBCASE("mutation"){
+        float old_gene = test.getGene(0);
+        test.mutate(100);
+        WARN_NE(test.getGene(0), old_gene); // er is altijd nog kans dat de willekeurige mutatie gelijk is, dan warn
+    }
+
+}
+
+TEST_CASE("GeneticAlgorithm : Organism crossover"){
+    Organism dad = Organism(1);
+    Organism empty = Organism();
+    Organism bad_mom = Organism(2);
+    Organism mom = Organism(1);
+
+    REQUIRE_THROWS(dad.crossover(empty));
+    REQUIRE_THROWS(dad.crossover(bad_mom));
+
+    Organism child;
+    REQUIRE_NOTHROW(child = dad.crossover(mom));
+
+    REQUIRE_EQ(child.getGene(0), mom.getGene(0));
+
+    Organism dad2 = Organism(2);
+    Organism mom2 = Organism(2);
+
+    REQUIRE_NOTHROW(child = dad2.crossover(mom2));
+
+    Organism dad3 = Organism(3);
+    Organism mom3 = Organism(3);
+
+    REQUIRE_NOTHROW(child = dad3.crossover(mom3));
+
+}

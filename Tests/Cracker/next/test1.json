@@ -1,0 +1,17 @@
+{
+  "Variables": ["S", "L1", "L3", "D1"],
+  "Terminals": ["U", "L", "0", "1", "2", "3"],
+  "Productions": [
+    {"head": "S", "body": ["L1", "D1", "L3"], "prob":  0.7},
+    {"head": "S", "body": ["D1", "L1"], "prob": 0.3},
+    {"head": "L1", "body": ["U"], "prob": 0.5},
+    {"head": "L1", "body": ["L"], "prob": 0.5},
+    {"head": "L3", "body": ["U", "U", "L"], "prob": 0.1},
+    {"head": "L3", "body": ["U", "L", "L"], "prob": 0.9},
+    {"head": "D1", "body": ["0"], "prob": 0.1},
+    {"head": "D1", "body": ["1"], "prob": 0.3},
+    {"head": "D1", "body": ["2"], "prob": 0.3},
+    {"head": "D1", "body": ["3"], "prob": 0.3}
+  ],
+  "Start": "S"
+}

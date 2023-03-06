@@ -1,0 +1,9 @@
+{
+  "populationSize": 128,
+  "eliteSize": 6,
+  "cutoffSize": 25,
+  "tournamentSize": 3,
+  "mutationRate": 5,
+  "genomeLength": 20,
+  "trainLength": 500
+}

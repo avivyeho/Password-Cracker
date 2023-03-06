@@ -1,0 +1,19 @@
+{
+  "Variables": ["S", "D1", "S1", "S2", "L3"],
+  "Terminals": ["U", "L", "4", "5", "6", "%", "#", "$", "*", "!", "$$", "**"],
+  "Productions": [
+    {"head": "S", "body": ["D1", "L3", "S2", "D1"], "prob":  0.75},
+    {"head": "S", "body": ["L3", "D1", "S1"], "prob": 0.25},
+    {"head": "D1", "body": ["4"], "prob": 0.6},
+    {"head": "D1", "body": ["5"], "prob": 0.2},
+    {"head": "D1", "body": ["6"], "prob": 0.2},
+    {"head": "S1", "body": ["!"], "prob": 0.65},
+    {"head": "S1", "body": ["%"], "prob": 0.30},
+    {"head": "S1", "body": ["#"], "prob": 0.05},
+    {"head": "S2", "body": ["$$"], "prob": 0.7},
+    {"head": "S2", "body": ["**"], "prob": 0.3},
+    {"head": "L3", "body": ["L", "L", "L"], "prob": 0.8},
+    {"head": "L3", "body": ["U", "L", "L"], "prob": 0.2}
+  ],
+  "Start": "S"
+}
